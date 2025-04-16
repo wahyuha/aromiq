@@ -4,698 +4,512 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aromiq - Premium Indonesian Essential Oils</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2e7d32',
+                        secondary: '#1b5e20',
+                        accent: '#81c784',
+                        light: '#f1f8e9',
+                        dark: '#1a1a1a',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        :root {
-            --primary: #2e7d32;
-            --secondary: #1b5e20;
-            --accent: #81c784;
-            --light: #f1f8e9;
-            --dark: #1a1a1a;
-            --text-dark: #333;
-            --text-light: #f5f5f5;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        body {
-            background-color: #fff;
-            color: var(--text-dark);
-            line-height: 1.6;
-        }
-        
-        a {
-            text-decoration: none;
-            color: var(--primary);
-            transition: color 0.3s;
-        }
-        
-        a:hover {
-            color: var(--secondary);
-        }
-        
-        .container {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header Styles */
-        header {
-            background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
+        .hero-video {
+            position: absolute;
             top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
             z-index: 1000;
         }
         
-        .header-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-        }
-        
-        .logo {
-            display: flex;
-            align-items: center;
-        }
-        
-        .logo img {
-            height: 50px;
-        }
-        
-        .logo-text {
-            margin-left: 10px;
-            font-size: 24px;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 30px;
-        }
-        
-        nav ul li a {
-            font-weight: 500;
-            position: relative;
-        }
-        
-        nav ul li a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
             left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--primary);
-            transition: width 0.3s;
-        }
-        
-        nav ul li a:hover::after {
-            width: 100%;
-        }
-        
-        .cta-button {
-            background-color: var(--primary);
-            color: white;
-            padding: 10px 25px;
-            border-radius: 30px;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: inline-block;
-        }
-        
-        .cta-button:hover {
-            background-color: var(--secondary);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/600') center/cover no-repeat;
-            padding: 150px 0;
-            text-align: center;
-            color: white;
-        }
-        
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-        
-        .hero p {
-            font-size: 20px;
-            max-width: 700px;
-            margin: 0 auto 40px;
-        }
-        
-        /* About Section */
-        .about {
-            padding: 100px 0;
-            background-color: var(--light);
-        }
-        
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-            position: relative;
-        }
-        
-        .section-title h2 {
-            font-size: 36px;
-            color: var(--primary);
-            display: inline-block;
-        }
-        
-        .section-title h2::after {
-            content: '';
-            display: block;
-            width: 70px;
-            height: 3px;
-            background-color: var(--accent);
-            margin: 15px auto 0;
-        }
-        
-        .about-content {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-        }
-        
-        .about-image {
-            flex: 1;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-        
-        .about-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        
-        .about-text {
-            flex: 1;
-        }
-        
-        .about-text p {
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
-        
-        /* Products Section */
-        .products {
-            padding: 100px 0;
-        }
-        
-        .product-categories {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 50px;
-        }
-        
-        .category-button {
-            padding: 10px 20px;
-            margin: 0 10px;
-            border: 2px solid var(--primary);
-            border-radius: 30px;
-            background: transparent;
-            color: var(--primary);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-        
-        .category-button.active, .category-button:hover {
-            background-color: var(--primary);
-            color: white;
-        }
-        
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
+            right: 0;
+            z-index: 999;
         }
         
         .product-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.3s ease;
         }
         
         .product-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
-        .product-image {
-            width: 100%;
-            height: 200px;
-            background-color: var(--light);
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
         }
         
-        .product-image img {
-            max-width: 80%;
-            max-height: 80%;
-        }
-        
-        .product-info {
-            padding: 20px;
-        }
-        
-        .product-info h3 {
-            margin-bottom: 10px;
-            color: var(--primary);
-        }
-        
-        .product-info p {
-            margin-bottom: 15px;
-            color: var(--text-dark);
-            font-size: 14px;
-        }
-        
-        .product-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 20px;
-            font-size: 14px;
-        }
-        
-        .product-grade {
-            background-color: var(--accent);
-            color: var(--text-dark);
-            padding: 3px 10px;
-            border-radius: 30px;
-            font-size: 12px;
-            font-weight: 500;
-        }
-        
-        /* Certifications Section */
-        .certifications {
-            padding: 100px 0;
-            background-color: var(--light);
-        }
-        
-        .cert-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .cert-card {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            text-align: center;
-            width: 200px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s;
-        }
-        
-        .cert-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .cert-icon {
-            font-size: 40px;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-        
-        .cert-title {
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-        
-        /* Export Details Section */
-        .export-details {
-            padding: 100px 0;
-        }
-        
-        .export-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .export-card {
-            background: white;
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            border-left: 4px solid var(--accent);
-        }
-        
-        .export-card h3 {
-            color: var(--primary);
-            margin-bottom: 15px;
-        }
-        
-        .export-card ul {
-            list-style-position: inside;
-            margin-top: 10px;
-        }
-        
-        .export-card ul li {
-            margin-bottom: 5px;
-        }
-        
-        /* Contact Section */
-        .contact {
-            padding: 100px 0;
-            background-color: var(--light);
-        }
-        
-        .contact-container {
-            display: flex;
-            gap: 50px;
-            margin-top: 50px;
-        }
-        
-        .contact-info {
-            flex: 1;
-        }
-        
-        .contact-info h3 {
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-        
-        .contact-info p {
-            margin-bottom: 20px;
-        }
-        
-        .contact-detail {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .contact-icon {
-            background-color: var(--accent);
-            color: var(--primary);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 15px;
-        }
-        
-        .contact-form {
-            flex: 1;
-            background: white;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-        }
-        
-        .form-control:focus {
-            border-color: var(--primary);
-            outline: none;
-        }
-        
-        textarea.form-control {
-            resize: vertical;
-            min-height: 120px;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: var(--dark);
-            color: var(--text-light);
-            padding: 70px 0 20px;
-        }
-        
-        .footer-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-        
-        .footer-col h3 {
-            color: white;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-        
-        .footer-col h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
-            height: 2px;
-            background-color: var(--accent);
-        }
-        
-        .footer-col ul {
-            list-style: none;
-        }
-        
-        .footer-col ul li {
-            margin-bottom: 10px;
-        }
-        
-        .footer-col ul li a {
-            color: #ccc;
-            transition: color 0.3s;
-        }
-        
-        .footer-col ul li a:hover {
-            color: white;
-            padding-left: 5px;
-        }
-        
-        .footer-col p {
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-        
-        .social-icons {
-            display: flex;
-            gap: 15px;
-        }
-        
-        .social-icons a {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: white;
-            transition: all 0.3s;
-        }
-        
-        .social-icons a:hover {
-            background-color: var(--accent);
-            transform: translateY(-3px);
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .about-content {
-                flex-direction: column;
-            }
-            
-            .contact-container {
-                flex-direction: column;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 36px;
-            }
-            
-            .hero p {
-                font-size: 16px;
-            }
-            
-            nav {
-                display: none;
-            }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
-<body>
-    <!-- Header Section -->
-    <header>
-        <div class="container header-container">
-            <div class="logo">
-                <div class="logo-text">AROMIQ</div>
+<body class="bg-white text-gray-800">
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/6281212560026" target="_blank" class="floating-whatsapp bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-all">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <!-- Sticky CTA -->
+    <div class="sticky-cta bg-white shadow-lg py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <p class="text-lg font-semibold">Ready to start your essential oil journey?</p>
+            <a href="#contact" class="bg-primary text-white px-6 py-2 rounded-full hover:bg-secondary transition-all">Request Quote</a>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+                <span class="text-2xl font-bold text-primary">AROMIQ</span>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#products">Products</a></li>
-                    <li><a href="#certifications">Certifications</a></li>
-                    <li><a href="#export">Export</a></li>
-                    <li><a href="#contact">Contact</a></li>
+            <nav class="hidden md:block">
+                <ul class="flex space-x-8">
+                    <li><a href="#home" class="text-gray-600 hover:text-primary transition-colors">Home</a></li>
+                    <li><a href="#about" class="text-gray-600 hover:text-primary transition-colors">About</a></li>
+                    <li><a href="#products" class="text-gray-600 hover:text-primary transition-colors">Products</a></li>
+                    <li><a href="#certifications" class="text-gray-600 hover:text-primary transition-colors">Certifications</a></li>
+                    <li><a href="#export" class="text-gray-600 hover:text-primary transition-colors">Export</a></li>
+                    <li><a href="#contact" class="text-gray-600 hover:text-primary transition-colors">Contact</a></li>
                 </ul>
             </nav>
-            <a href="#contact" class="cta-button">Request Quote</a>
+            <button class="md:hidden">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <h1>Authentic Botanical Oils from Indonesia</h1>
-            <p>Premium-grade essential oils sourced directly from the fertile lands of Indonesia, serving manufacturers, distributors, and wellness brands worldwide.</p>
-            <a href="#products" class="cta-button">Explore Our Products</a>
+    <section id="home" class="relative h-screen flex items-center">
+        <video autoplay muted loop class="hero-video">
+            <source src="https://video-previews.elements.envatousercontent.com/files/67bb89f2-4988-4fde-986d-e45af8fb8aa5/video_preview_h264.mp4" type="video/mp4">
+        </video>
+        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div class="container mx-auto px-4 text-white relative z-10">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6">Premium Essential Oils from Indonesia</h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl">Direct source of high-quality Patchouli and Nutmeg oils for manufacturers and wellness brands worldwide.</p>
+            <div class="flex space-x-4">
+                <a href="#products" class="bg-primary text-white px-8 py-3 rounded-full hover:bg-secondary transition-all">Explore Products</a>
+                <a href="#contact" class="bg-white text-primary px-8 py-3 rounded-full hover:bg-gray-100 transition-all">Request Samples</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <i class="fas fa-globe text-4xl text-primary mb-4"></i>
+                    <p class="font-semibold">Exported to 20+ Countries</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-certificate text-4xl text-primary mb-4"></i>
+                    <p class="font-semibold">ISO Certified</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-leaf text-4xl text-primary mb-4"></i>
+                    <p class="font-semibold">100% Natural</p>
+                </div>
+                <div class="text-center">
+                    <i class="fas fa-truck text-4xl text-primary mb-4"></i>
+                    <p class="font-semibold">Fast Shipping</p>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section class="about" id="about">
-        <div class="container">
-            <div class="section-title">
-                <h2>About Aromiq</h2>
-            </div>
-            <div class="about-content">
-                <div class="about-image">
-                    <img src="/api/placeholder/600/400" alt="Indonesian Essential Oil Production">
+    <section id="about" class="py-20">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="animate-on-scroll">
+                    <h2 class="text-3xl font-bold mb-6">Why Choose Aromiq?</h2>
+                    <p class="text-gray-600 mb-4">We are a trusted supplier of premium-grade essential oils sourced directly from the fertile lands of Indonesia. Our commitment to quality begins at the source – working directly with local farmers who practice sustainable cultivation methods.</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Direct sourcing from Indonesian farmers</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Rigorous quality testing</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Sustainable cultivation methods</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Competitive pricing</span>
+                        </li>
+                    </ul>
                 </div>
-                <div class="about-text">
-                    <p>Aromiq is a trusted supplier of premium-grade essential oils sourced directly from the fertile lands of Indonesia. We specialize in Patchouli and Nutmeg oils for export markets, serving manufacturers, distributors, and wellness brands worldwide.</p>
-                    <p>Our commitment to quality begins at the source – working directly with local farmers who practice sustainable cultivation methods. Each batch of essential oil undergoes rigorous testing to ensure the highest standard of purity and potency.</p>
-                    <p>With years of experience in essential oil production and export, we understand international market requirements and provide reliable solutions for your aromatic ingredient needs.</p>
-                    <a href="#products" class="cta-button">View Our Products</a>
+                <div class="animate-on-scroll">
+                    <img src="https://homesteading.com/wp-content/uploads/2020/04/selection-essential-oils-herbs-flowers-background-how-to-make-essential-oils-ss.jpg" alt="Essential Oil Production" class="rounded-lg shadow-xl">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Products Section -->
-    <section class="products" id="products">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Products</h2>
+    <section id="products" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-6">Our Premium Products</h2>
+            <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">Discover our range of premium essential oils and oleoresins, sourced directly from Indonesia's finest producers.</p>
+            
+            <!-- Product Categories -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button class="category-filter active px-6 py-2 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all" data-category="all">All Products</button>
+                <button class="category-filter px-6 py-2 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all" data-category="patchouli">Patchouli Oils</button>
+                <button class="category-filter px-6 py-2 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all" data-category="nutmeg">Nutmeg Products</button>
+                <button class="category-filter px-6 py-2 rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all" data-category="specialty">Specialty</button>
             </div>
-            <div class="product-categories">
-                <button class="category-button active">All Products</button>
-                <button class="category-button">Patchouli</button>
-                <button class="category-button">Nutmeg</button>
-                <button class="category-button">Specialty</button>
+
+            <!-- Quick View Modal -->
+            <div class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50" id="quickViewModal">
+                <div class="bg-white rounded-lg max-w-4xl w-full mx-4 max-h-[90vh] overflow-y-auto">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-6">
+                            <h3 class="text-2xl font-bold">Product Details</h3>
+                            <button class="close-modal text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-times text-2xl"></i>
+                            </button>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-8">
+                            <div>
+                                <img src="" alt="Product Image" class="w-full rounded-lg shadow-lg" id="modalProductImage">
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold mb-2" id="modalProductName">Product Name</h4>
+                                <p class="text-gray-600 mb-4" id="modalProductDesc">Product Description</p>
+                                <h4 class="text-xl font-bold mb-2">Technical Specifications</h4>
+                                <ul class="space-y-2 text-gray-600" id="modalProductSpecs">
+                                    <!-- Specifications will be populated by JavaScript -->
+                                </ul>
+                                <div class="mt-6">
+                                    <h4 class="text-xl font-bold mb-2">Available Documentation</h4>
+                                    <div class="flex flex-wrap gap-2" id="modalProductDocs">
+                                        <!-- Documentation will be populated by JavaScript -->
+                                    </div>
+                                </div>
+                                <div class="mt-6 flex space-x-4">
+                                    <button class="bg-primary text-white px-6 py-2 rounded-lg hover:bg-secondary transition-all">
+                                        Request Sample
+                                    </button>
+                                    <button class="bg-white text-primary border border-primary px-6 py-2 rounded-lg hover:bg-primary hover:text-white transition-all">
+                                        Get Quote
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="product-grid">
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="/api/placeholder/300/200" alt="Patchouli Oil - Crude">
+
+            <!-- Products Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Patchouli Oil - Crude -->
+                <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-category="patchouli">
+                    <div class="relative h-64 group">
+                        <img src="https://homesteading.com/wp-content/uploads/2020/04/selection-essential-oils-herbs-flowers-background-how-to-make-essential-oils-ss.jpg" 
+                             alt="Patchouli Oil - Crude" 
+                             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-sm">AR-P01</div>
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                            <button class="quick-view-btn opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white text-primary px-6 py-2 rounded-lg font-semibold" data-product="patchouli-crude">
+                                Quick View
+                            </button>
+                        </div>
                     </div>
-                    <div class="product-info">
-                        <h3>Patchouli Oil – Crude</h3>
-                        <p>Raw patchouli oil from Aceh/Sumatra, unaged with authentic aroma profile.</p>
-                        <p><strong>Product Code:</strong> AR-P01</p>
-                        <div class="product-meta">
-                            <span class="product-grade">Crude Grade</span>
-                            <span>MOQ: 5kg</span>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Patchouli Oil – Crude</h3>
+                        <p class="text-gray-600 mb-4">Raw patchouli oil from Aceh/Sumatra, unaged with authentic aroma profile.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">Crude Grade</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">MOQ: 5kg</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">Lead Time: 7-14 days</span>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-2">Packaging Options:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• 5kg HDPE drum</li>
+                                <li>• 25kg aluminium drum</li>
+                            </ul>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex space-x-2">
+                                <button class="sample-btn bg-white text-primary border border-primary px-4 py-2 rounded-lg hover:bg-primary hover:text-white transition-all">
+                                    <i class="fas fa-flask mr-2"></i>Sample
+                                </button>
+                                <button class="quote-btn bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-all">
+                                    <i class="fas fa-calculator mr-2"></i>Quote
+                                </button>
+                            </div>
+                            <button class="compare-btn text-gray-600 hover:text-primary transition-colors">
+                                <i class="fas fa-balance-scale"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="/api/placeholder/300/200" alt="Patchouli Oil - Aged">
+
+                <!-- Patchouli Oil - Aged -->
+                <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-category="patchouli">
+                    <div class="relative h-64 group">
+                        <img src="https://homesteading.com/wp-content/uploads/2020/04/selection-essential-oils-herbs-flowers-background-how-to-make-essential-oils-ss.jpg" 
+                             alt="Patchouli Oil - Aged" 
+                             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-sm">AR-P02</div>
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                            <button class="quick-view-btn opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white text-primary px-6 py-2 rounded-lg font-semibold" data-product="patchouli-aged">
+                                Quick View
+                            </button>
+                        </div>
                     </div>
-                    <div class="product-info">
-                        <h3>Patchouli Oil – Aged</h3>
-                        <p>Aged 6–12 months for enhanced aroma and darker tone, perfect for fine fragrances.</p>
-                        <p><strong>Product Code:</strong> AR-P02</p>
-                        <div class="product-meta">
-                            <span class="product-grade">Premium Grade</span>
-                            <span>MOQ: 5kg</span>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Patchouli Oil – Aged</h3>
+                        <p class="text-gray-600 mb-4">Aged 6–12 months for enhanced aroma and darker tone, perfect for fine fragrances.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">Premium Grade</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">MOQ: 5kg</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">Lead Time: 7-14 days</span>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-2">Packaging Options:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• 5kg drum</li>
+                                <li>• 25kg drum</li>
+                            </ul>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <div class="flex space-x-2">
+                                <button class="sample-btn bg-white text-primary border border-primary px-4 py-2 rounded-lg hover:bg-primary hover:text-white transition-all">
+                                    <i class="fas fa-flask mr-2"></i>Sample
+                                </button>
+                                <button class="quote-btn bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-all">
+                                    <i class="fas fa-calculator mr-2"></i>Quote
+                                </button>
+                            </div>
+                            <button class="compare-btn text-gray-600 hover:text-primary transition-colors">
+                                <i class="fas fa-balance-scale"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="/api/placeholder/300/200" alt="Patchouli Oil - Light">
+
+                <!-- Patchouli Oil - Light -->
+                <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-category="patchouli">
+                    <div class="relative h-64 group">
+                        <img src="https://homesteading.com/wp-content/uploads/2020/04/selection-essential-oils-herbs-flowers-background-how-to-make-essential-oils-ss.jpg" 
+                             alt="Patchouli Oil - Light" 
+                             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-sm">AR-P03</div>
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                            <button class="quick-view-btn opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white text-primary px-6 py-2 rounded-lg font-semibold" data-product="patchouli-light">
+                                Quick View
+                            </button>
+                        </div>
                     </div>
-                    <div class="product-info">
-                        <h3>Patchouli Oil – Light</h3>
-                        <p>Re-distilled patchouli oil with lighter scent and color for cosmetic applications.</p>
-                        <p><strong>Product Code:</strong> AR-P03</p>
-                        <div class="product-meta">
-                            <span class="product-grade">Cosmetic Grade</span>
-                            <span>MOQ: 5kg</span>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Patchouli Oil – Light</h3>
+                        <p class="text-gray-600 mb-4">Re-distilled patchouli oil with lighter scent and color for cosmetic applications.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">Cosmetic Grade</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">MOQ: 5kg</span>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-2">Packaging Options:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• 5kg drum</li>
+                                <li>• 25kg drum</li>
+                            </ul>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#contact" class="text-primary font-semibold hover:text-secondary">Request Sample →</a>
+                            <a href="#contact" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-all">Request Quote</a>
                         </div>
                     </div>
                 </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="/api/placeholder/300/200" alt="Nutmeg Essential Oil">
+
+                <!-- Nutmeg Essential Oil -->
+                <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-category="nutmeg">
+                    <div class="relative h-64 group">
+                        <img src="https://homesteading.com/wp-content/uploads/2020/04/selection-essential-oils-herbs-flowers-background-how-to-make-essential-oils-ss.jpg" 
+                             alt="Nutmeg Essential Oil" 
+                             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-sm">AR-N01</div>
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                            <button class="quick-view-btn opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white text-primary px-6 py-2 rounded-lg font-semibold" data-product="nutmeg-oil">
+                                Quick View
+                            </button>
+                        </div>
                     </div>
-                    <div class="product-info">
-                        <h3>Nutmeg Essential Oil</h3>
-                        <p>Steam-distilled from Myristica fragrans seeds, rich in aroma compounds.</p>
-                        <p><strong>Product Code:</strong> AR-N01</p>
-                        <div class="product-meta">
-                            <span class="product-grade">Food/Pharma Grade</span>
-                            <span>MOQ: 5kg</span>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Nutmeg Essential Oil</h3>
+                        <p class="text-gray-600 mb-4">Steam-distilled from Myristica fragrans seeds, rich in aroma compounds.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">Food/Pharma Grade</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">MOQ: 5kg</span>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-2">Packaging Options:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• 5kg drum</li>
+                                <li>• 25kg drum</li>
+                            </ul>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#contact" class="text-primary font-semibold hover:text-secondary">Request Sample →</a>
+                            <a href="#contact" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-all">Request Quote</a>
                         </div>
                     </div>
                 </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="/api/placeholder/300/200" alt="Nutmeg Oleoresin">
+
+                <!-- Nutmeg Oleoresin -->
+                <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-category="nutmeg">
+                    <div class="relative h-64 group">
+                        <img src="https://homesteading.com/wp-content/uploads/2020/04/selection-essential-oils-herbs-flowers-background-how-to-make-essential-oils-ss.jpg" 
+                             alt="Nutmeg Oleoresin" 
+                             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-sm">AR-N02</div>
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                            <button class="quick-view-btn opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white text-primary px-6 py-2 rounded-lg font-semibold" data-product="nutmeg-oleoresin">
+                                Quick View
+                            </button>
+                        </div>
                     </div>
-                    <div class="product-info">
-                        <h3>Nutmeg Oleoresin</h3>
-                        <p>Thick, aromatic extract with flavor-enhancing compounds for food applications.</p>
-                        <p><strong>Product Code:</strong> AR-N02</p>
-                        <div class="product-meta">
-                            <span class="product-grade">Oleoresin Grade</span>
-                            <span>MOQ: 1kg</span>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Nutmeg Oleoresin</h3>
+                        <p class="text-gray-600 mb-4">Thick, aromatic extract with flavor-enhancing compounds for food applications.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">Oleoresin Grade</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">MOQ: 1kg</span>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-2">Packaging Options:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• 1kg aluminum pouch</li>
+                                <li>• 5kg aluminum pouch</li>
+                            </ul>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#contact" class="text-primary font-semibold hover:text-secondary">Request Sample →</a>
+                            <a href="#contact" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-all">Request Quote</a>
                         </div>
                     </div>
                 </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="/api/placeholder/300/200" alt="Organic Patchouli Oil">
+
+                <!-- Organic Patchouli Oil -->
+                <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-category="patchouli">
+                    <div class="relative h-64 group">
+                        <img src="https://homesteading.com/wp-content/uploads/2020/04/selection-essential-oils-herbs-flowers-background-how-to-make-essential-oils-ss.jpg" 
+                             alt="Organic Patchouli Oil" 
+                             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-sm">AR-OB01</div>
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300 flex items-center justify-center">
+                            <button class="quick-view-btn opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 bg-white text-primary px-6 py-2 rounded-lg font-semibold" data-product="organic-patchouli">
+                                Quick View
+                            </button>
+                        </div>
                     </div>
-                    <div class="product-info">
-                        <h3>Organic Patchouli Oil</h3>
-                        <p>Certified organic, 100% pure patchouli oil for natural product formulations.</p>
-                        <p><strong>Product Code:</strong> AR-OB01</p>
-                        <div class="product-meta">
-                            <span class="product-grade">Certified Grade</span>
-                            <span>MOQ: 5kg</span>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Organic Patchouli Oil</h3>
+                        <p class="text-gray-600 mb-4">Certified organic, 100% pure patchouli oil for natural product formulations.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">Certified Grade</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">MOQ: 5kg</span>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-2">Packaging Options:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• 5kg drum</li>
+                                <li>• 25kg drum</li>
+                            </ul>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#contact" class="text-primary font-semibold hover:text-secondary">Request Sample →</a>
+                            <a href="#contact" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-all">Request Quote</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Custom Oil Blend -->
+                <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-category="specialty">
+                    <div class="relative h-64 group">
+                    <div class="relative h-64">
+                        <img src="https://homesteading.com/wp-content/uploads/2020/04/selection-essential-oils-herbs-flowers-background-how-to-make-essential-oils-ss.jpg" 
+                             alt="Custom Oil Blend" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-sm">AR-BL01</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Custom Oil Blend</h3>
+                        <p class="text-gray-600 mb-4">Tailored blends of patchouli, nutmeg, and more to meet your specific requirements.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">On Request</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">MOQ: 5kg</span>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-2">Packaging Options:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• Custom packaging available</li>
+                            </ul>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#contact" class="text-primary font-semibold hover:text-secondary">Request Sample →</a>
+                            <a href="#contact" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-all">Request Quote</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sample Pack -->
+                <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden animate-on-scroll" data-category="all">
+                    <div class="relative h-64">
+                        <img src="https://homesteading.com/wp-content/uploads/2020/04/selection-essential-oils-herbs-flowers-background-how-to-make-essential-oils-ss.jpg" 
+                             alt="Sample Pack" 
+                             class="w-full h-full object-cover">
+                        <div class="absolute top-4 right-4 bg-primary text-white px-3 py-1 rounded-full text-sm">AR-SMP</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Sample Pack</h3>
+                        <p class="text-gray-600 mb-4">100ml sample for lab testing and aroma review of our premium essential oils.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="bg-accent text-primary px-3 py-1 rounded-full text-sm">All grades</span>
+                            <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">MOQ: 1 bottle</span>
+                        </div>
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-2">Packaging Options:</h4>
+                            <ul class="text-sm text-gray-600 space-y-1">
+                                <li>• 100ml amber glass bottle</li>
+                            </ul>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#contact" class="text-primary font-semibold hover:text-secondary">Request Sample →</a>
+                            <a href="#contact" class="bg-primary text-white px-4 py-2 rounded-lg hover:bg-secondary transition-all">Request Quote</a>
                         </div>
                     </div>
                 </div>
@@ -704,154 +518,220 @@
     </section>
 
     <!-- Certifications Section -->
-    <section class="certifications" id="certifications">
-        <div class="container">
-            <div class="section-title">
-                <h2>Quality Assurance</h2>
-            </div>
-            <p class="text-center">We provide comprehensive documentation to support your quality and regulatory requirements.</p>
-            <div class="cert-container">
-                <div class="cert-card">
-                    <div class="cert-icon">📊</div>
-                    <div class="cert-title">COA</div>
-                    <p>Certificate of Analysis</p>
+    <section id="certifications" class="py-20">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-6">Quality Assurance & Certifications</h2>
+            <p class="text-gray-600 text-center mb-12 max-w-2xl mx-auto">We provide comprehensive documentation to ensure quality, safety, and compliance with international standards.</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- COA -->
+                <div class="cert-card bg-white rounded-lg shadow-lg p-6 animate-on-scroll">
+                    <div class="flex items-center justify-center w-16 h-16 bg-primary bg-opacity-10 rounded-full mb-4">
+                        <i class="fas fa-file-alt text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Certificate of Analysis (COA)</h3>
+                    <p class="text-gray-600 mb-4">Detailed analysis of chemical composition, purity, and quality parameters for each batch.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Chemical composition</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Purity levels</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Physical properties</span>
+                        </li>
+                    </ul>
                 </div>
-                <div class="cert-card">
-                    <div class="cert-icon">🧪</div>
-                    <div class="cert-title">GC-MS</div>
-                    <p>Gas Chromatography Report</p>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-icon">📑</div>
-                    <div class="cert-title">MSDS</div>
-                    <p>Material Safety Data Sheet</p>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-icon">🌱</div>
-                    <div class="cert-title">Organic</div>
-                    <p>Organic Certification</p>
-                </div>
-                <div class="cert-card">
-                    <div class="cert-icon">✅</div>
-                    <div class="cert-title">Halal</div>
-                    <p>Halal Certification</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Export Details Section -->
-    <section class="export-details" id="export">
-        <div class="container">
-            <div class="section-title">
-                <h2>Export Information</h2>
-            </div>
-            <p class="text-center">We make exporting essential oils from Indonesia simple and reliable.</p>
-            <div class="export-grid">
-                <div class="export-card">
-                    <h3>Origin</h3>
-                    <p>Our essential oils are proudly sourced and processed in Indonesia, known for its biodiversity and ideal growing conditions.</p>
-                </div>
-                <div class="export-card">
-                    <h3>HS Codes</h3>
-                    <ul>
-                        <li>33012934 (Essential Oils)</li>
-                        <li>33019090 (Oleoresins)</li>
+                <!-- GC-MS Report -->
+                <div class="cert-card bg-white rounded-lg shadow-lg p-6 animate-on-scroll">
+                    <div class="flex items-center justify-center w-16 h-16 bg-primary bg-opacity-10 rounded-full mb-4">
+                        <i class="fas fa-flask text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">GC-MS Report</h3>
+                    <p class="text-gray-600 mb-4">Gas Chromatography-Mass Spectrometry analysis for detailed chemical profiling.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Chemical fingerprint</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Compound identification</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Quantitative analysis</span>
+                        </li>
                     </ul>
                 </div>
-                <div class="export-card">
-                    <h3>Shipping Options</h3>
-                    <ul>
-                        <li>CIF (Cost, Insurance & Freight)</li>
-                        <li>FOB (Free On Board)</li>
-                        <li>EXW (Ex Works)</li>
+
+                <!-- MSDS -->
+                <div class="cert-card bg-white rounded-lg shadow-lg p-6 animate-on-scroll">
+                    <div class="flex items-center justify-center w-16 h-16 bg-primary bg-opacity-10 rounded-full mb-4">
+                        <i class="fas fa-exclamation-triangle text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Material Safety Data Sheet (MSDS)</h3>
+                    <p class="text-gray-600 mb-4">Comprehensive safety information for handling, storage, and transportation.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Safety guidelines</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Handling procedures</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Emergency measures</span>
+                        </li>
                     </ul>
                 </div>
-                <div class="export-card">
-                    <h3>Packaging</h3>
-                    <ul>
-                        <li>100ml amber glass (samples)</li>
-                        <li>1kg aluminium pouch</li>
-                        <li>5kg / 10kg / 25kg drums</li>
+
+                <!-- Organic Certificate -->
+                <div class="cert-card bg-white rounded-lg shadow-lg p-6 animate-on-scroll">
+                    <div class="flex items-center justify-center w-16 h-16 bg-primary bg-opacity-10 rounded-full mb-4">
+                        <i class="fas fa-leaf text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Organic Certificate</h3>
+                    <p class="text-gray-600 mb-4">Certification for organic production methods and sustainable practices.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Organic farming practices</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Sustainable sourcing</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Environmental standards</span>
+                        </li>
                     </ul>
+                    <div class="mt-4 text-sm text-gray-500 italic">
+                        Available for organic products
+                    </div>
                 </div>
-                <div class="export-card">
-                    <h3>Lead Time</h3>
-                    <p>7–14 business days based on availability and quality control process.</p>
+
+                <!-- Halal Certificate -->
+                <div class="cert-card bg-white rounded-lg shadow-lg p-6 animate-on-scroll">
+                    <div class="flex items-center justify-center w-16 h-16 bg-primary bg-opacity-10 rounded-full mb-4">
+                        <i class="fas fa-certificate text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Halal Certification</h3>
+                    <p class="text-gray-600 mb-4">Certification ensuring compliance with Islamic dietary laws and standards.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Halal processing</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Quality assurance</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Religious compliance</span>
+                        </li>
+                    </ul>
+                    <div class="mt-4 text-sm text-gray-500 italic">
+                        Available upon request
+                    </div>
                 </div>
-                <div class="export-card">
-                    <h3>Documentation</h3>
-                    <p>We provide all necessary export documentation including phytosanitary certificates when required.</p>
+
+                <!-- Documentation Request -->
+                <div class="cert-card bg-white rounded-lg shadow-lg p-6 animate-on-scroll">
+                    <div class="flex items-center justify-center w-16 h-16 bg-primary bg-opacity-10 rounded-full mb-4">
+                        <i class="fas fa-file-download text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Documentation Request</h3>
+                    <p class="text-gray-600 mb-4">Need specific documentation? Contact us for any certification requirements.</p>
+                    <ul class="text-sm text-gray-600 space-y-2">
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Custom documentation</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Additional certifications</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-check text-primary mr-2"></i>
+                            <span>Country-specific requirements</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="mt-4 inline-block bg-primary text-white px-6 py-2 rounded-lg hover:bg-secondary transition-all">Request Documents</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Contact Us</h2>
-            </div>
-            <p class="text-center">Interested in pricing, COA samples, or partnerships? We're here to help.</p>
-            <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Get In Touch</h3>
-                    <p>Our export team is ready to assist with your essential oil requirements and answer any questions about our products and services.</p>
-                    <div class="contact-detail">
-                        <div class="contact-icon">✉️</div>
-                        <div>
-                            <strong>Email</strong>
-                            <p>export@aromiq.com</p>
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12">
+                <div>
+                    <h2 class="text-3xl font-bold mb-6">Get in Touch</h2>
+                    <p class="text-gray-600 mb-8">Ready to start your essential oil journey? Contact us for samples, pricing, or any questions.</p>
+                    <div class="space-y-6">
+                        <div class="flex items-center">
+                            <i class="fas fa-envelope text-primary text-xl mr-4"></i>
+                            <div>
+                                <p class="font-semibold">Email</p>
+                                <p class="text-gray-600">export@aromiq.com</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="contact-detail">
-                        <div class="contact-icon">🌐</div>
-                        <div>
-                            <strong>Website</strong>
-                            <p>www.aromiq.com</p>
+                        <div class="flex items-center">
+                            <i class="fas fa-phone text-primary text-xl mr-4"></i>
+                            <div>
+                                <p class="font-semibold">Phone</p>
+                                <p class="text-gray-600">+62-xxx-xxxx-xxxx</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="contact-detail">
-                        <div class="contact-icon">📱</div>
-                        <div>
-                            <strong>WhatsApp</strong>
-                            <p>+62-xxx-xxxx-xxxx</p>
+                        <div class="flex items-center">
+                            <i class="fab fa-whatsapp text-primary text-xl mr-4"></i>
+                            <div>
+                                <p class="font-semibold">WhatsApp</p>
+                                <p class="text-gray-600">+62-xxx-xxxx-xxxx</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <h3>Request Information</h3>
-                    <form>
-                        <div class="form-group">
-                            <label for="name">Full Name</label>
-                            <input type="text" id="name" class="form-control" required>
+                <div class="bg-white p-8 rounded-lg shadow-lg">
+                    <h3 class="text-2xl font-bold mb-6">Request Information</h3>
+                    <form class="space-y-6">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Full Name</label>
+                            <input type="text" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-primary">
                         </div>
-                        <div class="form-group">
-                            <label for="company">Company</label>
-                            <input type="text" id="company" class="form-control" required>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Company</label>
+                            <input type="text" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-primary">
                         </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" required>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Email</label>
+                            <input type="email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-primary">
                         </div>
-                        <div class="form-group">
-                            <label for="interest">Products of Interest</label>
-                            <select id="interest" class="form-control" required>
-                                <option value="">Select product</option>
-                                <option value="patchouli">Patchouli Oil</option>
-                                <option value="nutmeg">Nutmeg Oil</option>
-                                <option value="oleoresin">Nutmeg Oleoresin</option>
-                                <option value="organic">Organic Products</option>
-                                <option value="custom">Custom Blends</option>
-                                <option value="multiple">Multiple Products</option>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Products of Interest</label>
+                            <select class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-primary">
+                                <option>Select product</option>
+                                <option>Patchouli Oil</option>
+                                <option>Nutmeg Oil</option>
+                                <option>Oleoresin</option>
                             </select>
                         </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" class="form-control" required></textarea>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Message</label>
+                            <textarea class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:border-primary" rows="4"></textarea>
                         </div>
-                        <button type="submit" class="cta-button">Send Request</button>
+                        <button type="submit" class="w-full bg-primary text-white py-3 rounded-lg hover:bg-secondary transition-all">Send Request</button>
                     </form>
                 </div>
             </div>
@@ -859,41 +739,237 @@
     </section>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-container">
-                <div class="footer-col">
-                    <h3>Aromiq</h3>
-                    <p>Premium supplier of authentic Indonesian essential oils for global markets. Quality, sustainability, and reliability in every drop.</p>
-                    <div class="social-icons">
-                        <a href="#">🔗</a>
-                        <a href="#">🔗</a>
-                        <a href="#">🔗</a>
-                        <a href="#">🔗</a>
+    <footer class="bg-dark text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">AROMIQ</h3>
+                    <p class="text-gray-400">Premium supplier of authentic Indonesian essential oils for global markets.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Products</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Patchouli Oils</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Nutmeg Oils</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Oleoresins</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Export</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Documentation</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Connect</h4>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook"></i></a>
                     </div>
                 </div>
-                <div class="footer-col">
-                    <h3>Products</h3>
-                    <ul>
-                        <li><a href="#">Patchouli Oils</a></li>
-                        <li><a href="#">Nutmeg Oils</a></li>
-                        <li><a href="#">Organic Products</a></li>
-                        <li><a href="#">Oleoresins</a></li>
-                        <li><a href="#">Custom Blends</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Export</h3>
-                    <ul>
-                        <li><a href="#">Documentation</a></li>
-                        <li><a href="#">Packaging Options</a></li>
-                        <li><a href="#">Shipping Methods</a></li>
-                        <li><a href="#">FAQ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Contact</h3>
-                    <ul>
-                        <li><a href="#">Request Quotation</a></li>
-                        <li><a href="#">Request Samples</a></li>
-                        <li><a href="#">Partnership Inquiries</a></li>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Aromiq. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        });
+
+        document.querySelectorAll('.animate-on-scroll').forEach((el) => observer.observe(el));
+
+        // Product data for quick view modal
+        const productData = {
+            'patchouli-crude': {
+                name: 'Patchouli Oil – Crude',
+                description: 'Raw patchouli oil from Aceh/Sumatra, unaged with authentic aroma profile.',
+                image: 'https://homesteading.com/wp-content/uploads/2020/04/selection-essential-oils-herbs-flowers-background-how-to-make-essential-oils-ss.jpg',
+                specs: [
+                    { label: 'Product Code', value: 'AR-P01' },
+                    { label: 'Grade', value: 'Crude' },
+                    { label: 'MOQ', value: '5kg' },
+                    { label: 'Lead Time', value: '7-14 days' },
+                    { label: 'Origin', value: 'Aceh, Indonesia' }
+                ],
+                docs: ['COA', 'GC-MS', 'MSDS']
+            },
+            'patchouli-aged': {
+                name: 'Patchouli Oil – Aged',
+                description: 'Aged 6–12 months for enhanced aroma and darker tone, perfect for fine fragrances.',
+                image: 'https://homesteading.com/wp-content/uploads/2020/04/selection-essential-oils-herbs-flowers-background-how-to-make-essential-oils-ss.jpg',
+                specs: [
+                    { label: 'Product Code', value: 'AR-P02' },
+                    { label: 'Grade', value: 'Premium' },
+                    { label: 'MOQ', value: '5kg' },
+                    { label: 'Lead Time', value: '7-14 days' },
+                    { label: 'Origin', value: 'Aceh, Indonesia' }
+                ],
+                docs: ['COA', 'GC-MS', 'MSDS']
+            },
+            'patchouli-light': {
+                name: 'Patchouli Oil – Light',
+                description: 'Re-distilled patchouli oil with lighter scent and color for cosmetic applications.',
+                image: 'https://homesteading.com/wp-content/uploads/2020/04/selection-essential-oils-herbs-flowers-background-how-to-make-essential-oils-ss.jpg',
+                specs: [
+                    { label: 'Product Code', value: 'AR-P03' },
+                    { label: 'Grade', value: 'Cosmetic' },
+                    { label: 'MOQ', value: '5kg' },
+                    { label: 'Lead Time', value: '7-14 days' },
+                    { label: 'Origin', value: 'Aceh, Indonesia' }
+                ],
+                docs: ['COA', 'GC-MS', 'MSDS']
+            },
+            'nutmeg-oil': {
+                name: 'Nutmeg Essential Oil',
+                description: 'Steam-distilled from Myristica fragrans seeds, rich in aroma compounds.',
+                image: 'https://homesteading.com/wp-content/uploads/2020/04/selection-essential-oils-herbs-flowers-background-how-to-make-essential-oils-ss.jpg',
+                specs: [
+                    { label: 'Product Code', value: 'AR-N01' },
+                    { label: 'Grade', value: 'Food/Pharma' },
+                    { label: 'MOQ', value: '5kg' },
+                    { label: 'Lead Time', value: '7-14 days' },
+                    { label: 'Origin', value: 'Indonesia' }
+                ],
+                docs: ['COA', 'GC-MS', 'MSDS']
+            },
+            'nutmeg-oleoresin': {
+                name: 'Nutmeg Oleoresin',
+                description: 'Thick, aromatic extract with flavor-enhancing compounds for food applications.',
+                image: 'https://homesteading.com/wp-content/uploads/2020/04/selection-essential-oils-herbs-flowers-background-how-to-make-essential-oils-ss.jpg',
+                specs: [
+                    { label: 'Product Code', value: 'AR-N02' },
+                    { label: 'Grade', value: 'Oleoresin' },
+                    { label: 'MOQ', value: '1kg' },
+                    { label: 'Lead Time', value: '7-14 days' },
+                    { label: 'Origin', value: 'Indonesia' }
+                ],
+                docs: ['COA', 'GC-MS', 'MSDS']
+            },
+            'organic-patchouli': {
+                name: 'Organic Patchouli Oil',
+                description: 'Certified organic, 100% pure patchouli oil for natural product formulations.',
+                image: 'https://homesteading.com/wp-content/uploads/2020/04/selection-essential-oils-herbs-flowers-background-how-to-make-essential-oils-ss.jpg',
+                specs: [
+                    { label: 'Product Code', value: 'AR-OB01' },
+                    { label: 'Grade', value: 'Certified Organic' },
+                    { label: 'MOQ', value: '5kg' },
+                    { label: 'Lead Time', value: '7-14 days' },
+                    { label: 'Origin', value: 'Aceh, Indonesia' }
+                ],
+                docs: ['COA', 'GC-MS', 'MSDS', 'Organic Certificate']
+            },
+            'custom-blend': {
+                name: 'Custom Oil Blend',
+                description: 'Tailored blends of patchouli, nutmeg, and more to meet your specific requirements.',
+                image: 'https://homesteading.com/wp-content/uploads/2020/04/selection-essential-oils-herbs-flowers-background-how-to-make-essential-oils-ss.jpg',
+                specs: [
+                    { label: 'Product Code', value: 'AR-BL01' },
+                    { label: 'Grade', value: 'Custom' },
+                    { label: 'MOQ', value: '5kg' },
+                    { label: 'Lead Time', value: '14-21 days' },
+                    { label: 'Origin', value: 'Indonesia' }
+                ],
+                docs: ['COA', 'GC-MS', 'MSDS']
+            },
+            'sample-pack': {
+                name: 'Sample Pack',
+                description: '100ml sample for lab testing and aroma review of our premium essential oils.',
+                image: 'https://homesteading.com/wp-content/uploads/2020/04/selection-essential-oils-herbs-flowers-background-how-to-make-essential-oils-ss.jpg',
+                specs: [
+                    { label: 'Product Code', value: 'AR-SMP' },
+                    { label: 'Grade', value: 'All grades' },
+                    { label: 'MOQ', value: '1 bottle' },
+                    { label: 'Lead Time', value: '3-5 days' },
+                    { label: 'Origin', value: 'Indonesia' }
+                ],
+                docs: ['COA', 'GC-MS', 'MSDS']
+            }
+        };
+
+        // Category filtering
+        document.querySelectorAll('.category-filter').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                document.querySelectorAll('.category-filter').forEach(btn => {
+                    btn.classList.remove('active', 'bg-primary', 'text-white');
+                    btn.classList.add('text-primary');
+                });
+                
+                // Add active class to clicked button
+                button.classList.add('active', 'bg-primary', 'text-white');
+                button.classList.remove('text-primary');
+                
+                const category = button.dataset.category;
+                
+                // Show/hide products based on category
+                document.querySelectorAll('.product-card').forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Quick View Modal Functionality
+        document.querySelectorAll('.quick-view-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const productId = button.dataset.product;
+                const product = productData[productId];
+                
+                if (product) {
+                    // Update modal content
+                    document.getElementById('modalProductImage').src = product.image;
+                    document.getElementById('modalProductName').textContent = product.name;
+                    document.getElementById('modalProductDesc').textContent = product.description;
+                    
+                    // Update specifications
+                    const specsList = document.getElementById('modalProductSpecs');
+                    specsList.innerHTML = product.specs.map(spec => `
+                        <li class="flex justify-between">
+                            <span>${spec.label}:</span>
+                            <span class="font-semibold">${spec.value}</span>
+                        </li>
+                    `).join('');
+                    
+                    // Update documentation
+                    const docsContainer = document.getElementById('modalProductDocs');
+                    docsContainer.innerHTML = product.docs.map(doc => `
+                        <span class="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-sm">${doc}</span>
+                    `).join('');
+                    
+                    // Show modal
+                    document.getElementById('quickViewModal').classList.remove('hidden');
+                    document.getElementById('quickViewModal').classList.add('flex');
+                }
+            });
+        });
+
+        // Close modal
+        document.querySelector('.close-modal').addEventListener('click', () => {
+            document.getElementById('quickViewModal').classList.add('hidden');
+            document.getElementById('quickViewModal').classList.remove('flex');
+        });
+
+        // Close modal when clicking outside
+        document.getElementById('quickViewModal').addEventListener('click', (e) => {
+            if (e.target === document.getElementById('quickViewModal')) {
+                document.getElementById('quickViewModal').classList.add('hidden');
+                document.getElementById('quickViewModal').classList.remove('flex');
+            }
+        });
+    </script>
+</body>
+</html>
