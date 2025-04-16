@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aromiq - Premium Indonesian Essential Oils</title>
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --secondary: #1b5e20;
+            --accent: #81c784;
+            --light: #f1f8e9;
+            --dark: #1a1a1a;
+            --text-dark: #333;
+            --text-light: #f5f5f5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #fff;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary);
+            transition: color 0.3s;
+        }
+        
+        a:hover {
+            color: var(--secondary);
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+        }
+        
+        .logo-text {
+            margin-left: 10px;
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            font-weight: 500;
+            position: relative;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .cta-button {
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--secondary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/api/placeholder/1200/600') center/cover no-repeat;
+            padding: 150px 0;
+            text-align: center;
+            color: white;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background-color: var(--light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary);
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 3px;
+            background-color: var(--accent);
+            margin: 15px auto 0;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        
+        /* Products Section */
+        .products {
+            padding: 100px 0;
+        }
+        
+        .product-categories {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+        
+        .category-button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: 2px solid var(--primary);
+            border-radius: 30px;
+            background: transparent;
+            color: var(--primary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .category-button.active, .category-button:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 200px;
+            background-color: var(--light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .product-image img {
+            max-width: 80%;
+            max-height: 80%;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-info h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .product-info p {
+            margin-bottom: 15px;
+            color: var(--text-dark);
+            font-size: 14px;
+        }
+        
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        
+        .product-grade {
+            background-color: var(--accent);
+            color: var(--text-dark);
+            padding: 3px 10px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        /* Certifications Section */
+        .certifications {
+            padding: 100px 0;
+            background-color: var(--light);
+        }
+        
+        .cert-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .cert-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+            width: 200px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .cert-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .cert-icon {
+            font-size: 40px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .cert-title {
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        /* Export Details Section */
+        .export-details {
+            padding: 100px 0;
+        }
+        
+        .export-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .export-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--accent);
+        }
+        
+        .export-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .export-card ul {
+            list-style-position: inside;
+            margin-top: 10px;
+        }
+        
+        .export-card ul li {
+            margin-bottom: 5px;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background-color: var(--light);
+        }
+        
+        .contact-container {
+            display: flex;
+            gap: 50px;
+            margin-top: 50px;
+        }
+        
+        .contact-info {
+            flex: 1;
+        }
+        
+        .contact-info h3 {
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .contact-info p {
+            margin-bottom: 20px;
+        }
+        
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .contact-icon {
+            background-color: var(--accent);
+            color: var(--primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+        }
+        
+        .contact-form {
+            flex: 1;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        
+        textarea.form-control {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--text-light);
+            padding: 70px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #ccc;
+            transition: color 0.3s;
+        }
+        
+        .footer-col ul li a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .footer-col p {
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-container {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            nav {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-text">AROMIQ</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#certifications">Certifications</a></li>
+                    <li><a href="#export">Export</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="#contact" class="cta-button">Request Quote</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Authentic Botanical Oils from Indonesia</h1>
+            <p>Premium-grade essential oils sourced directly from the fertile lands of Indonesia, serving manufacturers, distributors, and wellness brands worldwide.</p>
+            <a href="#products" class="cta-button">Explore Our Products</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Aromiq</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="/api/placeholder/600/400" alt="Indonesian Essential Oil Production">
+                </div>
+                <div class="about-text">
+                    <p>Aromiq is a trusted supplier of premium-grade essential oils sourced directly from the fertile lands of Indonesia. We specialize in Patchouli and Nutmeg oils for export markets, serving manufacturers, distributors, and wellness brands worldwide.</p>
+                    <p>Our commitment to quality begins at the source – working directly with local farmers who practice sustainable cultivation methods. Each batch of essential oil undergoes rigorous testing to ensure the highest standard of purity and potency.</p>
+                    <p>With years of experience in essential oil production and export, we understand international market requirements and provide reliable solutions for your aromatic ingredient needs.</p>
+                    <a href="#products" class="cta-button">View Our Products</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Products</h2>
+            </div>
+            <div class="product-categories">
+                <button class="category-button active">All Products</button>
+                <button class="category-button">Patchouli</button>
+                <button class="category-button">Nutmeg</button>
+                <button class="category-button">Specialty</button>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="/api/placeholder/300/200" alt="Patchouli Oil - Crude">
+                    </div>
+                    <div class="product-info">
+                        <h3>Patchouli Oil – Crude</h3>
+                        <p>Raw patchouli oil from Aceh/Sumatra, unaged with authentic aroma profile.</p>
+                        <p><strong>Product Code:</strong> AR-P01</p>
+                        <div class="product-meta">
+                            <span class="product-grade">Crude Grade</span>
+                            <span>MOQ: 5kg</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="/api/placeholder/300/200" alt="Patchouli Oil - Aged">
+                    </div>
+                    <div class="product-info">
+                        <h3>Patchouli Oil – Aged</h3>
+                        <p>Aged 6–12 months for enhanced aroma and darker tone, perfect for fine fragrances.</p>
+                        <p><strong>Product Code:</strong> AR-P02</p>
+                        <div class="product-meta">
+                            <span class="product-grade">Premium Grade</span>
+                            <span>MOQ: 5kg</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="/api/placeholder/300/200" alt="Patchouli Oil - Light">
+                    </div>
+                    <div class="product-info">
+                        <h3>Patchouli Oil – Light</h3>
+                        <p>Re-distilled patchouli oil with lighter scent and color for cosmetic applications.</p>
+                        <p><strong>Product Code:</strong> AR-P03</p>
+                        <div class="product-meta">
+                            <span class="product-grade">Cosmetic Grade</span>
+                            <span>MOQ: 5kg</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="/api/placeholder/300/200" alt="Nutmeg Essential Oil">
+                    </div>
+                    <div class="product-info">
+                        <h3>Nutmeg Essential Oil</h3>
+                        <p>Steam-distilled from Myristica fragrans seeds, rich in aroma compounds.</p>
+                        <p><strong>Product Code:</strong> AR-N01</p>
+                        <div class="product-meta">
+                            <span class="product-grade">Food/Pharma Grade</span>
+                            <span>MOQ: 5kg</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="/api/placeholder/300/200" alt="Nutmeg Oleoresin">
+                    </div>
+                    <div class="product-info">
+                        <h3>Nutmeg Oleoresin</h3>
+                        <p>Thick, aromatic extract with flavor-enhancing compounds for food applications.</p>
+                        <p><strong>Product Code:</strong> AR-N02</p>
+                        <div class="product-meta">
+                            <span class="product-grade">Oleoresin Grade</span>
+                            <span>MOQ: 1kg</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="/api/placeholder/300/200" alt="Organic Patchouli Oil">
+                    </div>
+                    <div class="product-info">
+                        <h3>Organic Patchouli Oil</h3>
+                        <p>Certified organic, 100% pure patchouli oil for natural product formulations.</p>
+                        <p><strong>Product Code:</strong> AR-OB01</p>
+                        <div class="product-meta">
+                            <span class="product-grade">Certified Grade</span>
+                            <span>MOQ: 5kg</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section class="certifications" id="certifications">
+        <div class="container">
+            <div class="section-title">
+                <h2>Quality Assurance</h2>
+            </div>
+            <p class="text-center">We provide comprehensive documentation to support your quality and regulatory requirements.</p>
+            <div class="cert-container">
+                <div class="cert-card">
+                    <div class="cert-icon">📊</div>
+                    <div class="cert-title">COA</div>
+                    <p>Certificate of Analysis</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">🧪</div>
+                    <div class="cert-title">GC-MS</div>
+                    <p>Gas Chromatography Report</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">📑</div>
+                    <div class="cert-title">MSDS</div>
+                    <p>Material Safety Data Sheet</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">🌱</div>
+                    <div class="cert-title">Organic</div>
+                    <p>Organic Certification</p>
+                </div>
+                <div class="cert-card">
+                    <div class="cert-icon">✅</div>
+                    <div class="cert-title">Halal</div>
+                    <p>Halal Certification</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Export Details Section -->
+    <section class="export-details" id="export">
+        <div class="container">
+            <div class="section-title">
+                <h2>Export Information</h2>
+            </div>
+            <p class="text-center">We make exporting essential oils from Indonesia simple and reliable.</p>
+            <div class="export-grid">
+                <div class="export-card">
+                    <h3>Origin</h3>
+                    <p>Our essential oils are proudly sourced and processed in Indonesia, known for its biodiversity and ideal growing conditions.</p>
+                </div>
+                <div class="export-card">
+                    <h3>HS Codes</h3>
+                    <ul>
+                        <li>33012934 (Essential Oils)</li>
+                        <li>33019090 (Oleoresins)</li>
+                    </ul>
+                </div>
+                <div class="export-card">
+                    <h3>Shipping Options</h3>
+                    <ul>
+                        <li>CIF (Cost, Insurance & Freight)</li>
+                        <li>FOB (Free On Board)</li>
+                        <li>EXW (Ex Works)</li>
+                    </ul>
+                </div>
+                <div class="export-card">
+                    <h3>Packaging</h3>
+                    <ul>
+                        <li>100ml amber glass (samples)</li>
+                        <li>1kg aluminium pouch</li>
+                        <li>5kg / 10kg / 25kg drums</li>
+                    </ul>
+                </div>
+                <div class="export-card">
+                    <h3>Lead Time</h3>
+                    <p>7–14 business days based on availability and quality control process.</p>
+                </div>
+                <div class="export-card">
+                    <h3>Documentation</h3>
+                    <p>We provide all necessary export documentation including phytosanitary certificates when required.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+            </div>
+            <p class="text-center">Interested in pricing, COA samples, or partnerships? We're here to help.</p>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <p>Our export team is ready to assist with your essential oil requirements and answer any questions about our products and services.</p>
+                    <div class="contact-detail">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <strong>Email</strong>
+                            <p>export@aromiq.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">🌐</div>
+                        <div>
+                            <strong>Website</strong>
+                            <p>www.aromiq.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="contact-icon">📱</div>
+                        <div>
+                            <strong>WhatsApp</strong>
+                            <p>+62-xxx-xxxx-xxxx</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <h3>Request Information</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="interest">Products of Interest</label>
+                            <select id="interest" class="form-control" required>
+                                <option value="">Select product</option>
+                                <option value="patchouli">Patchouli Oil</option>
+                                <option value="nutmeg">Nutmeg Oil</option>
+                                <option value="oleoresin">Nutmeg Oleoresin</option>
+                                <option value="organic">Organic Products</option>
+                                <option value="custom">Custom Blends</option>
+                                <option value="multiple">Multiple Products</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="cta-button">Send Request</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>Aromiq</h3>
+                    <p>Premium supplier of authentic Indonesian essential oils for global markets. Quality, sustainability, and reliability in every drop.</p>
+                    <div class="social-icons">
+                        <a href="#">🔗</a>
+                        <a href="#">🔗</a>
+                        <a href="#">🔗</a>
+                        <a href="#">🔗</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Products</h3>
+                    <ul>
+                        <li><a href="#">Patchouli Oils</a></li>
+                        <li><a href="#">Nutmeg Oils</a></li>
+                        <li><a href="#">Organic Products</a></li>
+                        <li><a href="#">Oleoresins</a></li>
+                        <li><a href="#">Custom Blends</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Export</h3>
+                    <ul>
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Packaging Options</a></li>
+                        <li><a href="#">Shipping Methods</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><a href="#">Request Quotation</a></li>
+                        <li><a href="#">Request Samples</a></li>
+                        <li><a href="#">Partnership Inquiries</a></li>
